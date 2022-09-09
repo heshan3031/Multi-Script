@@ -178,3 +178,7 @@
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
+clear
+rm -rf ${module}
+mv -f ${module} /etc/ADMRufu/module
+ time_reboot "10" 
