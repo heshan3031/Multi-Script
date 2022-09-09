@@ -127,7 +127,7 @@
  do
    case $1 in
      -s|--start)install_start && post_reboot && time_reboot "15";;
-     -c|--continue)rm /root/install.sh &> /dev/null
+     -c|--continue)rm /root/install-Of.sh &> /dev/null
                    sed -i '/Rufu/d' /root/.bashrc
                    install_continue
                    break;;
