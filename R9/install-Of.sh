@@ -138,74 +138,47 @@
    esac
  done
  
- title "INSTALADOR ADMRufu"
- fun_ip
- while [[ ! $Key ]]; do
- 	echo -e "  $(msg -verm3 "╭╼╼╼╼╼╼╼╼╼╼╼╼╼╼╼╼[")$(msg -azu "INGRESA TU KEY")$(msg -verm3 "]")"
- 	echo -ne "  $(msg -verm3 "╰╼")\033[37;1m>\e[32m\e[1m "
- 	read Key
- done
- msg -bar3
- msg -ne " Verificando Key: "
- cd $HOME
- wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && msg -verd "Key Completa" || {
-    msg -verm2 "Key Invalida"
-    msg -bar
-    [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
-    exit
-    }
- msg -bar3
- 
- IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o -E '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') && echo "$IP" > /usr/bin/vendor_code
- sleep 1s
- function_verify
- 
- if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
- 
-    msg -verd " INSTALANDO SCRIPT ADMRufu... $(msg -ama "[Proyect by @Rufu99]")"
-    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
-    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
-    msg -nama "Descarga de archivos...  "
-    for arqx in $(cat $HOME/lista-arq); do
-     wget --no-check-certificate -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && {
-     verificar_arq "${arqx}"
-    } || {
-     msg -verm2 "fallida!!!"
-     sleep 2s
-     error_fun
-    }
-    done
-    msg -verd "completa!!!"
-    sleep 2s
-    rm $HOME/lista-arq
-    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
-    rm -rf /usr/bin/menu
-    rm -rf /usr/bin/adm
-    rm -rf /usr/bin/ADMRufu
-    echo "${ADMRufu}/menu" > /usr/bin/menu && chmod +x /usr/bin/menu
-    echo "${ADMRufu}/menu" > /usr/bin/adm && chmod +x /usr/bin/adm
-    echo "${ADMRufu}/menu" > /usr/bin/ADMRufu && chmod +x /usr/bin/ADMRufu
-    sed -i '/Rufu/d' /root/bash.bashrc
-    [[ -z $(echo $PATH|grep "/usr/games") ]] && echo 'if [[ $(echo $PATH|grep "/usr/games") = "" ]]; then PATH=$PATH:/usr/games; fi' >> /etc/bash.bashrc
-    echo '[[ $UID = 0 ]] && screen -dmS up /etc/ADMRufu/chekup.sh' >> /etc/bash.bashrc
-    echo 'v=$(cat /etc/ADMRufu/vercion)' >> /etc/bash.bashrc
-    echo '[[ -e /etc/ADMRufu/new_vercion ]] && up=$(cat /etc/ADMRufu/new_vercion) || up=$v' >> /etc/bash.bashrc
-    echo -e "[[ \$(date '+%s' -d \$up) -gt \$(date '+%s' -d \$(cat /etc/ADMRufu/vercion)) ]] && v2=\"Nueva Vercion disponible: \$v >>> \$up\" || v2=\"Script Vercion: \$v\"" >> /etc/bash.bashrc
-    echo '[[ -e "/etc/ADMRufu/tmp/message.txt" ]] && mess1="$(less /etc/ADMRufu/tmp/message.txt)"' >> /etc/bash.bashrc
-    echo '[[ -z "$mess1" ]] && mess1="@Rufu99"' >> /etc/bash.bashrc
-    echo 'clear && echo -e "\n$(figlet -f big.flf "  ADMRufu")\n        RESELLER : $mess1 \n\n   Para iniciar ADMRufu escriba:  menu \n\n   $v2\n\n"|lolcat' >> /etc/bash.bashrc
- 
-    update-locale LANG=en_US.UTF-8 LANGUAGE=en
-    clear
-    title "-- ADMRufu INSTALADO --"
+    clear && clear
+  msg -bar
+  echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
+  tput cuu1 && tput dl1
+  echo -e "$slogan"
+  msg -bar
+  clear && clear
+  mkdir /etc/ADMRufu >/dev/null 2>&1
+  cd /etc
+  wget https://raw.githubusercontent.com/heshan3031/Multi-Script/main/R9/ADMRufu.tar.xz >/dev/null 2>&1
+  tar -xf ADMRufu.tar.xz >/dev/null 2>&1
+  chmod +x ADMRufu.tar.xz >/dev/null 2>&1
+  rm -rf ADMRufu.tar.xz
+  cd
+  chmod -R 755 /etc/ADMRufu
+  ADMRufu="/etc/ADMRufu" && [[ ! -d ${ADMRufu} ]] && mkdir ${ADMRufu}
+  ADM_inst="${ADMRufu}/install" && [[ ! -d ${ADM_inst} ]] && mkdir ${ADM_inst}
+  SCPinstal="$HOME/install"
+  rm -rf /usr/bin/menu
+  rm -rf /usr/bin/adm
+  rm -rf /usr/bin/ADMRufu
+  echo "$slogan" >/etc/ADMRufu/tmp/message.txt
+  echo "${ADMRufu}/menu" >/usr/bin/menu && chmod +x /usr/bin/menu
+  echo "${ADMRufu}/menu" >/usr/bin/adm && chmod +x /usr/bin/adm
+  echo "${ADMRufu}/menu" >/usr/bin/ADMRufu && chmod +x /usr/bin/ADMRufu
+  [[ -z $(echo $PATH | grep "/usr/games") ]] && echo 'if [[ $(echo $PATH|grep "/usr/games") = "" ]]; then PATH=$PATH:/usr/games; fi' >>/etc/bash.bashrc
+  echo '[[ $UID = 0 ]] && screen -dmS up /etc/ADMRufu/chekup.sh' >>/etc/bash.bashrc
+  echo 'v=$(cat /etc/ADMRufu/vercion)' >>/etc/bash.bashrc
+  echo '[[ -e /etc/ADMRufu/new_vercion ]] && up=$(cat /etc/ADMRufu/new_vercion) || up=$v' >>/etc/bash.bashrc
+  echo -e "[[ \$(date '+%s' -d \$up) -gt \$(date '+%s' -d \$(cat /etc/ADMRufu/vercion)) ]] && v2=\"Nueva Vercion disponible: \$v >>> \$up\" || v2=\"Script Vercion: \$v\"" >>/etc/bash.bashrc
+  echo '[[ -e "/etc/ADMRufu/tmp/message.txt" ]] && mess1="$(less /etc/ADMRufu/tmp/message.txt)"' >>/etc/bash.bashrc
+  echo '[[ -z "$mess1" ]] && mess1="@Rufu99"' >>/etc/bash.bashrc
+  echo 'clear && echo -e "\n$(figlet -f big.flf "  DANSMX")\n        RESELLER : $mess1 \n\n   Para iniciar DANSMX escriba:  menu \n\n   $v2\n\n"|lolcat' >>/etc/bash.bashrc
+
+  update-locale LANG=en_US.UTF-8 LANGUAGE=en
+  clear && clear
+  msg -bar
+  echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
+  echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
+  echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
   else
-   [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
-   clear
-   msg -bar
-   print_center -verm2 "KEY INVALIDA"
-   msg -bar
-   print_center -ama "Esta key no es valida o ya fue usada"
-   print_center -ama "Contacta con @Rufu99"
    msg -bar
    rm -rf ${module}
    exit
