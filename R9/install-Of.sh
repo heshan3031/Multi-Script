@@ -122,21 +122,24 @@
    print_center -ama "si algunas de las dependencias falla!!!\nal terminar, puede intentar instalar\nla misma manualmente usando el siguiente comando\napt install nom_del_paquete"
    enter
  }
+ while :; do
+  case $1 in
+  -s | --start) install_start && post_reboot && time_reboot "15" ;;
+  -c | --continue)
+    #rm /root/Install-Of.sh &>/dev/null
+    sed -i '/Instalador/d' /root/.bashrc
+    install_continue
+    break
+    ;;
+  # -u | --update)
+  #   install_start
+  #   install_continue
+  #   break
+  # ;;
+  *) exit ;;
+  esac
+done
  
- while :
- do
-   case $1 in
-     -s|--start)install_start && post_reboot && time_reboot "15";;
-     -c|--continue)rm /root/install-Of.sh &> /dev/null
-                   sed -i '/Rufu/d' /root/.bashrc
-                   install_continue
-                   break;;
-     -u|--update)install_start
-                 install_continue
-                 break;;
-     *)exit;;
-   esac
- done
  clear && clear
   msg -bar
   msg -bar
