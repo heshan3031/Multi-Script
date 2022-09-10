@@ -137,8 +137,10 @@
      *)exit;;
    esac
  done
- 
-    clear && clear
+ clear && clear
+  msg -bar
+  msg -bar
+  figlet " SLOGAN" | lolcat 
   msg -bar
   echo -ne "\033[1;97m Digite su slogan: \033[1;32m" && read slogan
   tput cuu1 && tput dl1
@@ -178,7 +180,4 @@
   echo -e "\e[1;92m             >> INSTALACION COMPLETADA <<" && msg bar2
   echo -e "      COMANDO PRINCIPAL PARA ENTRAR AL PANEL "
   echo -e "                      \033[1;41m  menu  \033[0;37m" && msg -bar2
-clear
-rm -rf ${module}
-mv -f ${module} /etc/ADMRufu/module
- time_reboot "10" 
+msg -ama "               Estamos Finalizando la Instalación" && msg bar2
