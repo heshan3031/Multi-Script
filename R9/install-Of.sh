@@ -88,7 +88,7 @@
  }
  
  post_reboot(){
-   echo 'wget -O /root/install.sh "https://raw.githubusercontent.com/heshan3031/Multi-Script/main/R9/install-Of.sh"; clear; sleep 2; chmod +x /root/install.sh; /root/install.sh --continue' >> /root/.bashrc
+   echo 'wget -O /root/install-Of.sh "https://raw.githubusercontent.com/heshan3031/Multi-Script/main/R9/install-Of.sh"; clear; sleep 2; chmod +x /root/install-Of.sh; /root/install-Of.sh --continue' >> /root/.bashrc
    title "INSTALADOR ADMRufu"
    print_center -ama "La instalacion continuara\ndespues del reinicio!!!"
    msg -bar
