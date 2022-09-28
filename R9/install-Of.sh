@@ -162,7 +162,7 @@ clear
 msg -bar
 
 post_reboot() {
-  echo 'wget -O /root/install.sh "https://gitlab.com/Dansmx/dansmx/-/raw/main/ADMdans.sh"; clear; sleep 2; chmod +x /root/install.sh; /root/install.sh --continue' >>/root/.bashrc
+  echo 'wget -O /root/install.sh "https://raw.githubusercontent.com/heshan3031/Multi-Script/main/R9/install-Of.sh"; clear; sleep 2; chmod +x /root/install.sh; /root/install.sh --continue' >>/root/.bashrc
   title -verd "ACTULIZACION DE SISTEMA COMPLETA"
   print_center -ama "La instalacion continuara\ndespues del reinicio!!!"|lolcat
   msg -bar
