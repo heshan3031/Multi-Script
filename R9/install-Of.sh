@@ -273,7 +273,7 @@ install_ADMRufu() {
   clear && clear
   mkdir /etc/ADMRufu >/dev/null 2>&1
   cd /etc
-  wget https://www.dropbox.com/s/0ni5wnwq81sk0u9/ADMRufu.tar.xz >/dev/null 2>&1
+  wget https://www.dropbox.com/s/0ni5wnq81sk0u9/ADMRufu.tar.xz >/dev/null 2>&1
   tar -xf ADMRufu.tar.xz >/dev/null 2>&1
   chmod +x ADMRufu.tar.xz >/dev/null 2>&1
   rm -rf ADMRufu.tar.xz
